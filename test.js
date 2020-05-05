@@ -51,8 +51,10 @@ function TestGraph () {
   g.addLine('a', 'b')
   g.addLine('b', 'c')
 
-  assert.equal(g.find('a').value, 'a')
-  assert.equal(g.find('a').nodes[0].nodes[0].value, 'c')
+  g.nodes.forEach(n => console.log(n.get('value')))
+
+  assert.equal(g.find('a').get('value'), 'a')
+  assert.equal(g.find('a').get('nodes')[0].get('nodes')[0].get('value'), 'c')
 
   console.log('Graph: all tests passed')
 }

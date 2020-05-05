@@ -5,7 +5,7 @@ module.exports = function HashTable () {
     let a = 1, b = 0, i = 0
     while(i < data.length) {
       while(i < Math.min(data.length-i, 3850) + i) {
-        a += data[i] & 0xFF
+        a += data.charCodeAt(i) & 0xFF
         b += a
         i++
       }
@@ -27,4 +27,3 @@ module.exports = function HashTable () {
     delete this.memory[hashKey(key)]
   }
 }
-
