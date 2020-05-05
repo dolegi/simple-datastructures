@@ -1,4 +1,4 @@
-function List () {
+module.exports = function List () {
   this.memory = []
   this.length = 0
 
@@ -12,6 +12,9 @@ function List () {
   }
 
   this.pop = function pop () {
+    if (this.length === 0) {
+      return
+    }
     this.length--
     const lastValue = this.memory[this.length]
     delete this.memory[this.length]
@@ -40,34 +43,3 @@ function List () {
   }
 }
 
-function HashTable () {
-  this.memory = []
-
-  function hashKey (data) { // Adler 32
-    let a = 1, b = 0;
-    for (let i = 0; i < data.length; i++)  {
-        a = (a + data[i]) % 65521;
-        b = (b + a) % 65521;
-    }
-    return a | (b << 16);
-  }
-
-  this.get = function get (key) {
-    return this.memory[hashKey(key)]
-  }
-
-  this.set = function set (key, value) {
-    this.memory[hashKey(key)] = value
-  }
-
-  this.remove = function remove (key) {
-    delete this.memory[hashKey(key)]
-  }
-}
-
-const h = new HashTable()
-h.set("test", "hello does this work?")
-h.set("test2", "hello does this work?")
-console.log(h.get("test"))
-h.remove("test2")
-console.log(h.get("test2"))
