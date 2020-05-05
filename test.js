@@ -1,6 +1,7 @@
 const assert = require('assert').strict
 const List = require('./list')
 const HashTable = require('./hash-table')
+const Graph = require('./graph')
 
 function TestList () {
   const l = new List()
@@ -27,7 +28,7 @@ function TestList () {
   console.log('List: all tests passed')
 }
 
-function TestHashTable() {
+function TestHashTable () {
   const h = new HashTable()
 
   h.set('test', 'first')
@@ -41,5 +42,21 @@ function TestHashTable() {
   console.log('HashTable: all tests passed')
 }
 
+function TestGraph () {
+  const g = new Graph()
+
+  g.addNode('a')
+  g.addNode('b')
+  g.addNode('c')
+  g.addLine('a', 'b')
+  g.addLine('b', 'c')
+
+  assert.equal(g.find('a').value, 'a')
+  assert.equal(g.find('a').nodes[0].nodes[0].value, 'c')
+
+  console.log('Graph: all tests passed')
+}
+
 TestList()
 TestHashTable()
+TestGraph()
