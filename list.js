@@ -42,6 +42,14 @@ module.exports = function List () {
     return firstValue
   }
 
-  return { get, push, pop, unshift, shift }
+  function find (fn) {
+    for (let i = 0; i < length; i++) {
+      if (fn(memory[i])) {
+        return memory[i]
+      }
+    }
+  }
+
+  return { get, push, pop, unshift, shift, find }
 }
 

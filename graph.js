@@ -1,12 +1,13 @@
 const HashTable = require('./hash-table')
+const List = require('./list')
 
 module.exports = function Graph () {
-  const nodes = []
+  const nodes = new List()
 
   function addNode (value) {
     const node = new HashTable()
     node.set('value', value)
-    node.set('nodes', [])
+    node.set('nodes', new List())
     nodes.push(node)
   }
 

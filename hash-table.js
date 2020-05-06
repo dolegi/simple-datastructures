@@ -1,11 +1,11 @@
 module.exports = function HashTable () {
   const memory = []
 
-  function hashKey (data) { // Adler 32
+  function hashKey (key) { // Adler 32
     let a = 1, b = 0, i = 0
-    while(i < data.length) {
-      while(i < Math.min(data.length-i, 3850) + i) {
-        a += data.charCodeAt(i) & 0xFF
+    while(i < key.length) {
+      while(i < Math.min(key.length-i, 3850) + i) {
+        a += key.charCodeAt(i) & 0xFF
         b += a
         i++
       }
