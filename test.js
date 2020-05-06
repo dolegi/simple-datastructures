@@ -82,6 +82,9 @@ function TestLinkedList () {
     .get('next')
     .get('value'), 2)
 
+  l.remove(2)
+  assert.equal(l.get(2).get('value'), 4)
+
   console.log('LinkedList: all tests passed')
 }
 

@@ -1,45 +1,47 @@
 module.exports = function List () {
-  this.memory = []
-  this.length = 0
+  const memory = []
+  let length = 0
 
-  this.get = function get (i) {
-    return this.memory[i]
+  function get (i) {
+    return memory[i]
   }
 
-  this.push = function push (value) {
-    this.memory[this.length] = value
-    this.length++
+  function push (value) {
+    memory[length] = value
+    length++
   }
 
-  this.pop = function pop () {
-    if (this.length === 0) {
+  function pop () {
+    if (length === 0) {
       return
     }
-    this.length--
-    const lastValue = this.memory[this.length]
-    delete this.memory[this.length]
+    length--
+    const lastValue = memory[length]
+    delete memory[length]
     return lastValue
   }
 
-  this.unshift = function unshift (value) {
-    this.length++
-    for (let i = 1; i < this.length; i++) {
-      this.memory[i] = this.memory[i-1]
+  function unshift (value) {
+    length++
+    for (let i = 1; i < length; i++) {
+      memory[i] = memory[i-1]
     }
-    this.memory[0] = value
+    memory[0] = value
   }
 
-  this.shift = function shift () {
-    if (this.length === 0) {
+  function shift () {
+    if (length === 0) {
       return
     }
-    const firstValue = this.memory[0]
-    this.length--;
-    for (let i = 0; i < this.length; i++) {
-      this.memory[i] = this.memory[i+1]
+    const firstValue = memory[0]
+    length--;
+    for (let i = 0; i < length; i++) {
+      memory[i] = memory[i+1]
     }
-    delete this.memory[this.length]
+    delete memory[length]
     return firstValue
   }
+
+  return { get, push, pop, unshift, shift }
 }
 

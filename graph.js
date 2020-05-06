@@ -1,18 +1,18 @@
 const HashTable = require('./hash-table')
 
 module.exports = function Graph () {
-  this.nodes = []
+  const nodes = []
 
-  this.addNode = function addNode (value) {
+  function addNode (value) {
     const node = new HashTable()
     node.set('value', value)
     node.set('nodes', [])
-    this.nodes.push(node)
+    nodes.push(node)
   }
 
-  this.addLine = function addLine (start, end) {
-    const startNode = this.find(start)
-    const endNode = this.find(end)
+  function addLine (start, end) {
+    const startNode = find(start)
+    const endNode = find(end)
 
     if (!startNode || !endNode) {
       return
@@ -21,7 +21,9 @@ module.exports = function Graph () {
     startNode.get('nodes').push(endNode)
   }
 
-  this.find = function find (value) {
-    return this.nodes.find(n => n.get('value') === value)
+  function find (value) {
+    return nodes.find(n => n.get('value') === value)
   }
+
+  return { addNode, addLine, find }
 }

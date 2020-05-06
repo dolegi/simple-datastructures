@@ -1,5 +1,5 @@
 module.exports = function HashTable () {
-  this.memory = []
+  const memory = []
 
   function hashKey (data) { // Adler 32
     let a = 1, b = 0, i = 0
@@ -15,15 +15,17 @@ module.exports = function HashTable () {
     return ((b%65521) << 16) | (a%65521);
   }
 
-  this.get = function get (key) {
-    return this.memory[hashKey(key)]
+  function get (key) {
+    return memory[hashKey(key)]
   }
 
-  this.set = function set (key, value) {
-    this.memory[hashKey(key)] = value
+  function set (key, value) {
+    memory[hashKey(key)] = value
   }
 
-  this.remove = function remove (key) {
-    delete this.memory[hashKey(key)]
+  function remove (key) {
+    delete memory[hashKey(key)]
   }
+
+  return { get, set, remove }
 }
