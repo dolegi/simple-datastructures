@@ -3,6 +3,7 @@ const List = require('./list')
 const HashTable = require('./hash-table')
 const Graph = require('./graph')
 const LinkedList = require('./linked-list')
+const Tree = require('./tree')
 
 function TestList () {
   const l = new List()
@@ -88,7 +89,30 @@ function TestLinkedList () {
   console.log('LinkedList: all tests passed')
 }
 
+function TestTree () {
+  const t = new Tree()
+  t.add('a')
+  t.add('b', 'a')
+  t.add('c', 'b')
+  t.add('d', 'b')
+  t.add('c', 'd')
+
+  assert.equal(t.get('a').get('value'), 'a')
+  assert.equal(t.get('b').get('value'), 'b')
+  assert.equal(t.get('c').get('value'), 'c')
+  assert.equal(t.get('d').get('value'), 'd')
+
+  assert.equal(t.get('a')
+    .get('children').find(n => n.get('value') === 'b')
+    .get('children').find(n => n.get('value') === 'd')
+    .get('children').find(n => n.get('value') === 'c')
+    .get('value'), 'c')
+
+  console.log('Tree: all tests passed')
+}
+
 TestList()
 TestHashTable()
 TestGraph()
 TestLinkedList()
+TestTree()

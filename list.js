@@ -50,6 +50,6 @@ module.exports = function List () {
     }
   }
 
-  return { get, push, pop, unshift, shift, find }
+  return { get, push, pop, unshift, shift, find, length: () => length }
 }
 
